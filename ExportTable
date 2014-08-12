@@ -1,0 +1,13 @@
+Sub ExportTableAsHTML()
+    Dim path As String
+    Dim rng As Range
+    
+    path = Application.ActiveWorkbook.path & "\table.html"
+    Set rng = ActiveCell.CurrentRegion
+    
+    With ActiveWorkbook.PublishObjects.Add(xlSourceRange, path, ActiveSheet.Name, _
+        rng.Address, xlHtmlStatic, "Name_Of_DIV", "Title_of_Page")
+        .Publish (True)
+        .AutoRepublish = False
+    End With
+End Sub
